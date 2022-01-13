@@ -11,6 +11,8 @@ router.get('/users', (req, res, next) => {
         res.status(200).json(users)
     }
 })
+
+router.post()
     
 
 module.exports = router
