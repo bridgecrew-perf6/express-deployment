@@ -2,7 +2,9 @@ const express = require('express')
 
 const router = express.Router()
 
-const users  = require('../data/user-data')
+let users = require('../data/user-data')
+
+const {validateUser} = require('../middleware')
 
 router.get('/users', (req, res, next) => { 
     if (!users) {
@@ -12,7 +14,12 @@ router.get('/users', (req, res, next) => {
     }
 })
 
-router.post()
+router.post('/register', validateUser, (req, res, next) => {
+    const { username, password } = req.body
+    const newUser = { username, password }
+    users = [...users, newUser]
+    res.status(200).json(users)
+})
     
 
 module.exports = router
