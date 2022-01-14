@@ -5,6 +5,12 @@ const server = express()
 
 server.use(express.json())
 
+server.get('/', (req, res) => {
+    res.send(
+        'hello'
+    )
+})
+
 server.use('/api', userRouter)
 
 server.use((err, req, res, next) => {
